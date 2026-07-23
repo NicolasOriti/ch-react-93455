@@ -1,0 +1,27 @@
+// destructuring
+//  []
+//  {}
+
+const ProductCard = ({ product }) => {
+  return (
+    <article className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
+      <img
+        src={product.image}
+        alt={product.name}
+        className="h-48 w-full object-cover"
+      />
+      <div className="flex flex-1 flex-col gap-2 p-4">
+        <span className="w-fit rounded-full bg-gray-100 px-2 py-0.5 text-xs font-medium uppercase tracking-wide text-gray-500">
+          {product.category}
+        </span>
+        <h2 className="text-lg font-semibold text-gray-900">{product.name}</h2>
+        <p className="text-xl font-bold text-gray-900">${product.price}</p>
+        <button className="mt-auto rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700">
+          Add to cart
+        </button>
+      </div>
+    </article>
+  );
+};
+
+export default ProductCard;
