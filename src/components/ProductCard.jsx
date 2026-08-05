@@ -1,6 +1,4 @@
-// destructuring
-//  []
-//  {}
+import Counter from './Counter'
 
 const ProductCard = ({ product }) => {
   return (
@@ -16,12 +14,11 @@ const ProductCard = ({ product }) => {
         </span>
         <h2 className="text-lg font-semibold text-gray-900">{product.name}</h2>
         <p className="text-xl font-bold text-gray-900">${product.price}</p>
-        <button className="mt-auto rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-gray-700">
-          Add to cart
-        </button>
+        <Counter />
       </div>
     </article>
   );
 };
+
 
 export default ProductCard;
