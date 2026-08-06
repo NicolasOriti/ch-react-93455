@@ -1,8 +1,19 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 const Counter = () => {
   let [counter, setCounter] = useState(0)
-  // const [estado, setEstado] = useState(valorInicial)
+
+  useEffect(() => {
+    console.log('se ejecuto el efecto')
+
+    return () => { // funcion de limpieza o cleanup function
+      console.log('el componente se desmonto')
+    }
+  }, [counter]) // array de dependencias
+
+  // [] -> el efecto solo se ejecuta 1 vez, en el montaje
+  // [a, b] -> el efecto se va a ejecutar en el montaje y cuando "a" o "b" cambien de valor
+  // Desmontaje -> hay que hacer una funcion de limpieza
 
   const handleIncrease = () => {
     setCounter(counter + 1)
@@ -11,8 +22,6 @@ const Counter = () => {
   const handleDecrease = () => {
     setCounter(prev => prev - 1)
   }
-
-  // PARA PRACTICAR: hacer que el contador no pueda llegar a numeros negativos
 
   return (
     <>

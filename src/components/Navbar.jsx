@@ -1,3 +1,5 @@
+import SearchInput from './SearchInput'
+
 const Navbar = () => {
   return (
     <header className="sticky top-0 z-10 bg-white/90 backdrop-blur border-b border-gray-200 shadow-sm">
@@ -8,6 +10,7 @@ const Navbar = () => {
           <li><a href="#" className="transition-colors hover:text-gray-900">Products</a></li>
           <li><a href="#" className="transition-colors hover:text-gray-900">About</a></li>
         </ul>
+        <SearchInput />
         <span className="cursor-pointer text-2xl transition-transform hover:scale-110">🛒</span>
       </nav>
     </header>

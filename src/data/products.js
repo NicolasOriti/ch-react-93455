@@ -1,4 +1,4 @@
-export const products = [
+export const products = [ // vamos a suponer que NO tenemos estos datos en local
   {
     id: 1,
     name: 'Product 1',

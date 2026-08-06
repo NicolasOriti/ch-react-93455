@@ -1,6 +1,6 @@
 import Counter from './Counter'
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product }) => { // componente presentacional
   return (
     <article className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
       <img
