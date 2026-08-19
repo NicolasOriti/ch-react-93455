@@ -1,6 +1,7 @@
 export const products = [ // vamos a suponer que NO tenemos estos datos en local
   {
     id: 1,
+    stock: 0,
     name: 'Product 1',
     price: 100,
     category: 'Category 1',
@@ -9,6 +10,7 @@ export const products = [ // vamos a suponer que NO tenemos estos datos en local
   },
   {
     id: 2,
+    stock: 10,
     name: 'Product 2',
     price: 200,
     category: 'Category 2',
@@ -17,6 +19,7 @@ export const products = [ // vamos a suponer que NO tenemos estos datos en local
   },
   {
     id: 3,
+    stock: 5,
     name: 'Product 3',
     price: 300,
     category: 'Category 3',

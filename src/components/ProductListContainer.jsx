@@ -1,29 +1,28 @@
 import ProductList from './ProductList'
-import { useState, useEffect } from 'react'
-import { products } from '../data/products'
+// import { useState, useEffect } from 'react'
+import { useFetch } from '../hooks/useFetch'
 
 const ProductListContainer = () => {
-  const [items, setItems] = useState([])
+  // const [items, setItems] = useState([])
   
-  // simular una llamada a una "api"
-  useEffect(() => {
-    const getProducts = () => new Promise((resolve, reject) => {
-      if (products.length > 0) {
-        resolve(products)
-      }
-      reject({ error: 'no hay productos' })
-    })
+  // useEffect(() => {
+  //   const getItems = async () => {
+  //     const req = await fetch('https://dummyjson.com/products')
+  //     const response = await req.json()
+  //     setItems(response.products)
+  //   }
+    
+  //   getItems()
+  // }, [])
 
-    getProducts()
-      .then(data => {
-        setTimeout(() => {
-          setItems(data)
-        }, 3000)
-      })
-  }, [])
+  const data = useFetch('https://dummyjson.com/products')
+
+  if (!data) {
+    return <div>cargando...</div>
+  }
 
   return ( 
-    <ProductList products={items} />
+    <ProductList products={data.products} />
   )
 }
 
