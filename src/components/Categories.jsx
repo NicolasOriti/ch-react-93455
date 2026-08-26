@@ -1,4 +1,5 @@
 import FetchCategories from './FetchCategories'
+import { NavLink } from 'react-router'
 
 function Categories () {
   return (
@@ -16,7 +17,14 @@ function Categories () {
                 render={(categories) => (
                   <>
                     {categories.map(category => (
-                      <li key={category}><a>{category}</a></li>
+                      <NavLink 
+                        to={`/category/${category}`}
+                        className={({ isActive }) =>
+                          isActive ? "bg-black" : ""
+                        }
+                      >
+                        <li key={category}><a>{category}</a></li>
+                      </NavLink>
                     ))}
                   </>
                 )}

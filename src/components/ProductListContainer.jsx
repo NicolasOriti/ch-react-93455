@@ -1,28 +1,22 @@
+import { useState, useEffect } from 'react'
+import { useParams } from 'react-router'
 import ProductList from './ProductList'
-// import { useState, useEffect } from 'react'
-import { useFetch } from '../hooks/useFetch'
 
 const ProductListContainer = () => {
-  // const [items, setItems] = useState([])
+  const [items, setItems] = useState([])
+  const { categoryName } = useParams()
   
-  // useEffect(() => {
-  //   const getItems = async () => {
-  //     const req = await fetch('https://dummyjson.com/products')
-  //     const response = await req.json()
-  //     setItems(response.products)
-  //   }
+  useEffect(() => {
+    const urlBase = 'https://dummyjson.com/products'
+    const urlCategories = `https://dummyjson.com/products/category/${categoryName}`
     
-  //   getItems()
-  // }, [])
-
-  const data = useFetch('https://dummyjson.com/products')
-
-  if (!data) {
-    return <div>cargando...</div>
-  }
+    fetch(categoryName ? urlCategories : urlBase)
+      .then(res => res.json())
+      .then(data => setItems(data.products))
+  }, [categoryName])
 
   return ( 
-    <ProductList products={data.products} />
+    <ProductList products={items} />
   )
 }
 

@@ -1,6 +1,9 @@
 import Counter from './Counter'
+import { useNavigate } from 'react-router';
 
-const ProductCard = ({ product }) => { // componente presentacional
+const ProductCard = ({ product }) => {
+  const navigate = useNavigate()
+
   return (
     <article className="flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-shadow hover:shadow-md">
       <img
@@ -18,6 +21,12 @@ const ProductCard = ({ product }) => { // componente presentacional
           stock: {product.stock}
         </p>
         <Counter />
+        <button 
+          className='bg-black py-2 rounded cursor-pointer'
+          onClick={() => navigate(`/product/${product.id}`)}
+        >
+          ver detalle
+        </button>
       </div>
     </article>
   );
