@@ -20,7 +20,7 @@ const ProductCard = ({ product }) => {
         <p className="text-xl font-bold text-gray-900">
           stock: {product.stock}
         </p>
-        <Counter />
+        <Counter product={product} />
         <button 
           className='bg-black py-2 rounded cursor-pointer'
           onClick={() => navigate(`/product/${product.id}`)}
