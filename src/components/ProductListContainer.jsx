@@ -1,23 +1,33 @@
-import { useState, useEffect } from 'react'
-import { useParams } from 'react-router'
-import ProductList from './ProductList'
+import { useParams } from 'react-router';
+
+import { useProducts } from '../hooks/useProducts';
+import ProductList from './ProductList';
 
 const ProductListContainer = () => {
-  const [items, setItems] = useState([])
-  const { categoryName } = useParams()
-  
-  useEffect(() => {
-    const urlBase = 'https://dummyjson.com/products'
-    const urlCategories = `https://dummyjson.com/products/category/${categoryName}`
-    
-    fetch(categoryName ? urlCategories : urlBase)
-      .then(res => res.json())
-      .then(data => setItems(data.products))
-  }, [categoryName])
+  const { categoryName } = useParams();
 
-  return ( 
-    <ProductList products={items} />
-  )
-}
+  const { products, loading, loadingMore, error, hasMore, loadMore } = useProducts({
+    category: categoryName,
+  });
 
-export default ProductListContainer
+  if (error) {
+    return (
+      <div className='rounded-lg border border-red-300 bg-red-50 p-4 text-sm text-red-700'>
+        <p className='font-semibold'>Could not load the products.</p>
+        <p className='mt-2 break-all'>{error.message}</p>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <p className='text-center text-gray-500'>Loading products...</p>;
+  }
+
+  if (products.length === 0) {
+    return <p className='text-center text-gray-500'>No products found.</p>;
+  }
+
+  return <ProductList products={products} />;
+};
+
+export default ProductListContainer;
